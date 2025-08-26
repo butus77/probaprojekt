@@ -50,7 +50,7 @@ export default function LightboxGallery({ photos, thumbHeightClass = "h-56" }: P
               aria-label={`Nagyítás: ${ph.alt}`}
             >
               <img
-                src={ph.thumbSrc || ph.fullSrc} // Changed from ph.src to ph.thumbSrc
+                src={ph.fullSrc} // Changed from ph.src to ph.thumbSrc
                 alt={ph.alt}
                 className={`w-full ${thumbHeightClass} object-cover transition-transform duration-300 group-hover:scale-105`}
                 loading="lazy"
