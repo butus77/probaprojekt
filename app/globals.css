@@ -1,42 +1,30 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Alap platform finomhangolás --- */
+* { @apply antialiased; }
+::selection { @apply bg-blue-600/20; }
+
+/* --- Sötét mód testreszabása --- */
+html.dark body { @apply bg-gray-950 text-gray-100; }
+html:not(.dark) body { @apply bg-white text-gray-900; }
+
+/* --- Tipográfia és ritmus --- */
+@layer base {
+  h1 { @apply text-3xl md:text-4xl font-extrabold tracking-tight; }
+  h2 { @apply text-2xl md:text-3xl font-bold tracking-tight; }
+  h3 { @apply text-xl md:text-2xl font-semibold; }
+  p  { @apply leading-7 text-gray-700 dark:text-gray-300; }
+  a  { @apply underline-offset-4 hover:underline; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Hasznos utilok */
+@layer utilities {
+  .card    { @apply rounded-2xl border border-gray-200/70 dark:border-gray-800 bg-white/70 dark:bg-gray-900/60 shadow-card backdrop-blur; }
+  .btn     { @apply inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold transition; }
+  .btn-primary { @apply btn bg-blue-600 text-white hover:bg-blue-700; }
+  .btn-ghost   { @apply btn border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800; }
+  .section { @apply container py-16; }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
