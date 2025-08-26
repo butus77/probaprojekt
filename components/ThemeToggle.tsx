@@ -2,19 +2,31 @@
 
 import { useEffect, useState } from "react";
 
+const STORAGE_KEY = "preferred-theme"; // "dark" | "light"
+
+function systemPrefersDark() {
+  return typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
-  const [dark, setDark] = useState(false);
+  const [mode, setMode] = useState<"dark" | "light">("light");
 
   useEffect(() => {
     setMounted(true);
-    setDark(document.documentElement.classList.contains("dark"));
+    const saved = (localStorage.getItem(STORAGE_KEY) as "dark" | "light" | null);
+    const initial = saved ?? (systemPrefersDark() ? "dark" : "light");
+    document.documentElement.classList.toggle("dark", initial === "dark");
+    setMode(initial);
   }, []);
 
   function toggle() {
-    const el = document.documentElement;
-    el.classList.toggle("dark");
-    setDark(el.classList.contains("dark"));
+    const next: "dark" | "light" = mode === "dark" ? "light" : "dark";
+    document.documentElement.classList.toggle("dark", next === "dark");
+    localStorage.setItem(STORAGE_KEY, next);
+    setMode(next);
   }
 
   if (!mounted) return null;
@@ -27,7 +39,7 @@ export default function ThemeToggle() {
       aria-label="Téma váltása"
       title="Téma váltása"
     >
-      {dark ? "🌙" : "☀️"}
+      {mode === "dark" ? "🌙" : "☀️"}
     </button>
   );
 }
