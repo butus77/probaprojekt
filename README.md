@@ -3,6 +3,10 @@
 Ez egy **Next.js 14 + Tailwind CSS 3** alapú személyes weboldal, amit gyakorlati tanulás és kísérletezés céljából hoztam létre.  
 Tartalmaz bemutatkozó oldalt, bejegyzéseket, fotóalbumot és kapcsolatfelvételi űrlapot.
 
+[![Screenshot a weboldalról](public/screenshot.png)](https://probaprojekt.vercel.app)
+[![Screenshot a weboldalról](public/screenshot2.png)](https://probaprojekt.vercel.app)
+
+
 ## 🚀 Online elérhetőség
 [**Megnyitás a Vercelen**](https://probaprojekt.vercel.app)
 
