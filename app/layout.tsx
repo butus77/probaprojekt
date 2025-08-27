@@ -18,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="hu">
-      <body className={`flex flex-col min-h-screen ${inter.className}`}>
+    <html lang="hu" suppressHydrationWarning>
+      <body className={`flex flex-col min-h-screen overflow-x-hidden ${inter.className}`}>
 
         <Header />
         <main id="content" className="flex-grow">
