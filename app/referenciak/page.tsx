@@ -11,7 +11,7 @@ export default function ReferenciakPage() {
       </h1>
 
       <p className="mt-3 text-base md:text-lg text-gray-700 dark:text-gray-300 text-center max-w-2xl mx-auto">
-        Válogatás azokból a munkákból, amelyek jól mutatják a fókuszom: letisztult felépítés, gyors betöltés és jó használhatóság.
+        Íme néhány projekt, amelyeken az elmúlt időszakban dolgoztam. Ezek a munkák jól tükrözik a webfejlesztési képességeimet és a modern technológiák iránti elkötelezettségemet.
       </p>
 
       <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
