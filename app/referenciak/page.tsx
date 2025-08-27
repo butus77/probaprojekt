@@ -1,55 +1,81 @@
 import Link from "next/link";
+import { references } from "@/lib/portfolio";
 
-const references = [
-  {
-    id: 1,
-    title: "Vállalati Weboldal",
-    excerpt: "Egy modern és reszponzív weboldal egy helyi vállalkozás számára, amely bemutatja szolgáltatásaikat és portfóliójukat.",
-    link: "https://example.com/project1",
-  },
-  
-  {
-    id: 2,
-    title: "E-kereskedelmi Platform",
-    excerpt: "Egy teljes körű e-kereskedelmi megoldás, termékkatalógussal, kosárfunkcióval és biztonságos fizetési átjáróval.",
-    link: "https://example.com/project2",
-  },
-  {
-    id: 3,
-    title: "Személyes Blog",
-    excerpt: "Egy egyedi tervezésű blog platform, ahol a felhasználó megoszthatja gondolatait és tapasztalatait a világgal.",
-    link: "https://example.com/project3",
-  },
-  {
-    id: 4,
-    title: "Mobil Alkalmazás Landing Page",
-    excerpt: "Egy vonzó landing page egy új mobilalkalmazás bemutatására, letöltési linkekkel és funkciók kiemelésével.",
-    link: "https://example.com/project4",
-  },
-];
+export const metadata = { title: "Referenciák | Bernadetta – Webfejlesztés" };
 
 export default function ReferenciakPage() {
   return (
-    <section className="container mx-auto p-8">
-      <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-200 mb-4 text-center">Referenciák</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 text-center max-w-2xl mx-auto">
-        Íme néhány projekt, amelyeken az elmúlt időszakban dolgoztam. Ezek a munkák jól tükrözik a webfejlesztési képességeimet és a modern technológiák iránti elkötelezettségemet.
+    <section className="section">
+      <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 text-center">
+        Referenciák
+      </h1>
+
+      <p className="mt-3 text-base md:text-lg text-gray-700 dark:text-gray-300 text-center max-w-2xl mx-auto">
+        Válogatás azokból a munkákból, amelyek jól mutatják a fókuszom: letisztult felépítés, gyors betöltés és jó használhatóság.
       </p>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {references.map((project) => (
-          <div key={project.id} className="card bg-white p-6 rounded-lg shadow-md flex flex-col">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">{project.title}</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow">{project.excerpt}</p>
-            <Link
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-ghost bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors self-start"
-            >
-              Megtekintés
-            </Link>
-          </div>
+      <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {references.map((p) => (
+          <article
+            key={p.id}
+            className="rounded-2xl border border-gray-200/70 dark:border-gray-800 bg-white/70 dark:bg-gray-900/60 shadow-card backdrop-blur overflow-hidden flex flex-col"
+          >
+            {/* Kép – csak ha van */}
+            {p.image && (
+              <div className="aspect-[16/9] w-full overflow-hidden">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </div>
+            )}
+
+            <div className="p-6 flex flex-col gap-3 flex-1">
+              <header>
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  {p.title}{" "}
+                  {p.year && (
+                    <span className="ml-2 align-middle text-sm text-gray-500 dark:text-gray-400">
+                      {p.year}
+                    </span>
+                  )}
+                </h2>
+              </header>
+
+              <p className="text-gray-700 dark:text-gray-300">{p.excerpt}</p>
+
+              {/* Tech badge-ek, ha vannak */}
+              {p.tech?.length ? (
+                <ul className="mt-1 flex flex-wrap gap-2">
+                  {p.tech.map((t) => (
+                    <li
+                      key={t}
+                      className="text-xs font-medium rounded-full px-2.5 py-1 bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+
+              {/* Gomb – csak ha van link */}
+              {p.link ? (
+                <div className="mt-4">
+                  <Link
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl px-4 py-2 font-semibold
+                               bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                  >
+                    Megtekintés
+                  </Link>
+                </div>
+              ) : null}
+            </div>
+          </article>
         ))}
       </div>
     </section>
