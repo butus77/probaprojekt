@@ -33,48 +33,59 @@ export default function ContactForm() {
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSuccessMessage("");
-    setErrors({});
+  e.preventDefault();
+  setSuccessMessage("");
+  setErrors({});
 
-    const nextErrors: ErrorState = {};
-    if (!formData.name.trim()) nextErrors.name = "A név megadása kötelező.";
-    if (!formData.email.trim()) nextErrors.email = "Az e-mail cím megadása kötelező.";
-    else if (!validateEmail(formData.email)) nextErrors.email = "Adj meg érvényes e-mail címet.";
-    if (!formData.message.trim()) nextErrors.message = "Az üzenet megadása kötelező.";
+  const nextErrors: ErrorState = {};
+  if (!formData.name.trim()) nextErrors.name = "A név megadása kötelező.";
+  if (!formData.email.trim()) nextErrors.email = "Az e-mail cím megadása kötelező.";
+  else if (!validateEmail(formData.email)) nextErrors.email = "Adj meg érvényes e-mail címet.";
+  if (!formData.message.trim()) nextErrors.message = "Az üzenet megadása kötelező.";
 
-    if (Object.keys(nextErrors).length) {
-      setErrors(nextErrors);
+  if (Object.keys(nextErrors).length) {
+    setErrors(nextErrors);
+    return;
+  }
+
+  try {
+    setSubmitting(true);
+
+    const res = await fetch("https://formspree.io/f/meolodbr", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      }),
+    });
+
+    if (!res.ok) {
+      let msg = "Sikertelen beküldés.";
+      try {
+        const data = await res.json();
+        if (data?.errors?.length) {
+          msg = data.errors.map((e: any) => e.message).join(" ");
+        }
+      } catch {}
+      setErrors({ global: msg });
       return;
     }
 
-    try {
-      setSubmitting(true);
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) {
-        let msg = "Sikertelen beküldés.";
-        try {
-          const data = await res.json();
-          if (data?.error) msg = data.error;
-        } catch {}
-        setErrors({ global: msg });
-        return;
-      }
-
-      setSuccessMessage("Üzenetét sikeresen elküldtük! Köszönjük.");
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setSuccessMessage(""), 5000);
-    } catch {
-      setErrors({ global: "Hálózati hiba. Próbáld újra később." });
-    } finally {
-      setSubmitting(false);
-    }
+    setSuccessMessage("Üzenetét sikeresen elküldtük! Köszönjük.");
+    setFormData({ name: "", email: "", message: "" });
+    setTimeout(() => setSuccessMessage(""), 5000);
+  } catch {
+    setErrors({ global: "Hálózati hiba. Próbáld újra később." });
+  } finally {
+    setSubmitting(false);
   }
+}
+
 
   return (
     <div className="mx-auto w-full">

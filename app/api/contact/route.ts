@@ -1,40 +1,30 @@
-// app/api/contact/route.ts
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
-type Payload = {
-  name?: string;
-  email?: string;
-  message?: string;
-};
-
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
-    const data = (await req.json()) as Payload;
+    const { name, email, message } = await request.json();
 
-    // Szerveroldali minimális validáció
-    const name = (data.name || "").trim();
-    const email = (data.email || "").trim();
-    const message = (data.message || "").trim();
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS,
+      },
+    });
 
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { ok: false, error: "Hiányzó mezők." },
-        { status: 400 }
-      );
-    }
+    const mailOptions = {
+      from: email,
+      to: process.env.MAIL_USER,
+      subject: `New contact from ${name}`,
+      text: message,
+    };
 
-    // Itt történne a tényleges feldolgozás:
-    // - email küldés (pl. nodemailer)
-    // - adatmentés adatbázisba / tárhelyre
-    // Most: LOG → fejlesztéshez ideális, azonnal látható.
-    console.log("[CONTACT] ▶", { name, email, message, at: new Date().toISOString() });
+    await transporter.sendMail(mailOptions);
 
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error("[CONTACT] ERROR ▶", err);
-    return NextResponse.json(
-      { ok: false, error: "Érvénytelen kérés." },
-      { status: 400 }
-    );
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ success: false, error: 'Error sending email' }, { status: 500 });
   }
 }
