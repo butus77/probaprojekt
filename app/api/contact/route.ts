@@ -1,30 +1,42 @@
 import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
 
 export async function POST(request: Request) {
+  let reqBody;
   try {
-    const { name, email, message } = await request.json();
+    reqBody = await request.json();
+  } catch (error) {
+    return NextResponse.json({ error: 'Invalid request body. Failed to parse JSON.' }, { status: 400 });
+  }
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
+  const formspreeEndpoint = process.env.FORMSPREE_ENDPOINT;
+
+  if (!formspreeEndpoint) {
+    console.error('FORMSPREE_ENDPOINT environment variable is not set.');
+    return NextResponse.json(
+      { error: 'Server configuration error.' },
+      { status: 500 }
+    );
+  }
+
+  try {
+    const response = await fetch(formspreeEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
+      body: JSON.stringify(reqBody),
     });
 
-    const mailOptions = {
-      from: email,
-      to: process.env.MAIL_USER,
-      subject: `New contact from ${name}`,
-      text: message,
-    };
+    const responseJson = await response.json();
 
-    await transporter.sendMail(mailOptions);
-
-    return NextResponse.json({ success: true });
+    if (response.ok) {
+      return NextResponse.json(responseJson, { status: 200 });
+    } else {
+      return NextResponse.json(responseJson, { status: response.status || 400 });
+    }
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ success: false, error: 'Error sending email' }, { status: 500 });
+    console.error('Error submitting to Formspree:', error);
+    return NextResponse.json({ error: 'Failed to submit form.' }, { status: 500 });
   }
 }

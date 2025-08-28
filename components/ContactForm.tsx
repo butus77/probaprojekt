@@ -51,16 +51,17 @@ export default function ContactForm() {
   try {
     setSubmitting(true);
 
-    const res = await fetch("https://formspree.io/f/meolodbr", {
+    const res = await fetch("/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json"
       },
       body: JSON.stringify({
         name: formData.name,
         email: formData.email,
-        message: formData.message
+        message: formData.message,
+        _subject: "New message from portfolio form",
+        _replyto: formData.email,
       }),
     });
 
@@ -68,8 +69,8 @@ export default function ContactForm() {
       let msg = "Sikertelen beküldés.";
       try {
         const data = await res.json();
-        if (data?.errors?.length) {
-          msg = data.errors.map((e: any) => e.message).join(" ");
+        if (data?.error) {
+          msg = data.error;
         }
       } catch {}
       setErrors({ global: msg });
