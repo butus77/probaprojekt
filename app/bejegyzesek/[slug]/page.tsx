@@ -1,10 +1,8 @@
-import { posts } from "@/lib/data";
 import { notFound } from "next/navigation";
+import { posts } from "@/lib/data";
 
 type PostPageProps = {
-  params: {
-    slug: string;
-  };
+  params: { slug: string };
 };
 
 export async function generateStaticParams() {
@@ -28,22 +26,28 @@ export default function PostPage({ params }: PostPageProps) {
 
   return (
     <section className="container mx-auto p-8 max-w-2xl">
-      <h1 className="text-4xl font-bold text-gray-800 mb-4">{post.title}</h1>
-      <p className="text-gray-500 mb-4">{formattedDate}</p>
+      <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+        {post.title}
+      </h1>
+
+      <p className="text-gray-500 dark:text-gray-400 mb-4">{formattedDate}</p>
+
       {post.tags && post.tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-6">
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full"
+              className="bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 text-xs font-semibold px-2.5 py-0.5 rounded-full"
             >
               {tag}
             </span>
           ))}
         </div>
       )}
-      <div className="prose prose-lg text-gray-700">
+
+      <div className="prose prose-lg text-gray-800 dark:text-gray-200">
         <p>{post.excerpt}</p>
+
         {/* Placeholder for full post content */}
         <p>
           Ez a bejegyzés teljes tartalma. Itt további részleteket találsz a{" "}
@@ -60,3 +64,4 @@ export default function PostPage({ params }: PostPageProps) {
     </section>
   );
 }
+
