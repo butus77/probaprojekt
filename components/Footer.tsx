@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="mt-16 border-t border-gray-200/70 dark:border-gray-800">
@@ -6,9 +8,12 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Bernadetta. Minden jog fenntartva.</p>
           <p>
             Készült Next.js 14 + Tailwind 3 segítségével.{" "}
-            <a className="underline" href="mailto:info@bernadetta.hu">
-              info@bernadetta.hu
-            </a>
+            <Link
+              href="/kapcsolat"
+              className="underline text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+            >
+              Kapcsolat
+            </Link>
           </p>
         </div>
       </div>
