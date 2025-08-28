@@ -3,6 +3,8 @@ import Link from "next/link";
 export const metadata = { title: "Bemutatkozó | Bernadetta – Webfejlesztés" };
 
 export default function HomePage() {
+  const buttonClass = "text-center inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold transition border border-gray-300 dark:border-gray-700 hover:bg-blue-700 hover:text-white dark:hover:border-blue-700";
+
   return (
     <section className="section">
       <div className="grid md:grid-cols-3 gap-12">
@@ -14,9 +16,11 @@ export default function HomePage() {
           <p className="mt-4">
             Modern, letisztult és gyors weboldalakat készítek, amelyek minden eszközön kiválóan működnek.
           </p>
-          <div className="mt-6 flex gap-3">
-            <Link href="/bejegyzesek" className="btn-primary">Bejegyzések</Link>
-            <Link href="/fotoalbum" className="btn-ghost">Fotóalbum</Link>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            <Link href="/bejegyzesek" className={buttonClass}>Bejegyzések</Link>
+            <Link href="/fotoalbum" className={buttonClass}>Fotóalbum</Link>
+            <Link href="/referenciak" className={buttonClass}>Referenciák</Link>
+            <Link href="/kapcsolat" className={buttonClass}>Kapcsolat</Link>
           </div>
         </div>
 
