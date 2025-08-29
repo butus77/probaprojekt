@@ -31,7 +31,7 @@ export default function HomePage() {
               <span aria-hidden className="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-500" />
               <div>
                 <h3 className="font-semibold">Reszponzív tervezés</h3>
-                <p className="text-sm">Mobilon és asztalin is kiváló élmény.</p>
+                <p className="text-sm">Mobilon és asztali számítógépen is kiváló élmény.</p>
               </div>
             </li>
             <li className="flex items-start gap-3">
@@ -45,7 +45,7 @@ export default function HomePage() {
               <span aria-hidden className="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-500" />
               <div>
                 <h3 className="font-semibold">Gyors betöltés</h3>
-                <p className="text-sm">Optimált kód és képek.</p>
+                <p className="text-sm">Optimalizált kód és képek.</p>
               </div>
             </li>
           </ul>
