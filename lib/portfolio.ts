@@ -39,7 +39,7 @@ export const references: Reference[] = [
   link: "https://www.vrvilagszeged.hu", // ha publikus, maradhat
   tech: ["Next.js", "TailwindCSS", "React"],
   year: 2025,
-  image: "/photos/Screenshot from VRvilag.png", // ide tehetsz egy screenshotot a public/photos mappába
+  image: "/Screenshot from VRvilag.png", // ide tehetsz egy screenshotot a public/photos mappába
 },
 
 
