@@ -23,9 +23,9 @@ Bár idősebb vagyok, a lelkesedésem talán még nagyobb, mint fiatalként volt
 
 ## Zárszó  
 
-Ez a blog számomra bizonyíték arra, hogy a kitérők nem hiábavalóak.  
-Minden tapasztalat hozzáadott ahhoz, ahol most tartok.  
-Mert ami késik, az valóban nem múlik.  
+Ez a blog számomra bizonyíték arra, hogy a kitérők nem végérvényes akadályok.  
+Minden tapasztalat hozzáadott valami felhasználhatót ahhoz, ahol most tartok.  
+És ami késik, az valóban nem múlik.  
 
 
                          
