@@ -7,10 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "vercel-build": "./optimize-photos.sh && next build"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
+    "lucide-react": "^0.542.0",
     "next": "^14.2.32",
     "nodemailer": "^7.0.5",
     "react": "^18.3.1",
