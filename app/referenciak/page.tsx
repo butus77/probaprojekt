@@ -11,8 +11,7 @@ export default function ReferenciakPage() {
       </h1>
 
       <p className="mt-3 text-base md:text-lg text-gray-700 dark:text-gray-300 text-center max-w-2xl mx-auto">
-        Íme néhány projekt, amelyeken az elmúlt időszakban dolgoztam. Ezek a munkák jól tükrözik a webfejlesztési képességeimet és a modern technológiák iránti elkötelezettségemet.
-      </p>
+        Referenciáim egyszerre mutatják meg a webfejlesztésben szerzett tapasztalataimat és az e-book formájában szerkesztett hitoktatói munkáimat – két terület, amelyben közös a kreatív, értékteremtő szemlélet. </p>
 
       <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {references.map((p) => (
@@ -60,20 +59,29 @@ export default function ReferenciakPage() {
                 </ul>
               ) : null}
 
-              {/* Gomb – csak ha van link */}
-              {p.link ? (
-                <div className="mt-4">
-                  <Link
-                    href={p.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-xl px-4 py-2 font-semibold
-                               bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-                  >
-                    Megtekintés
-                  </Link>
-                </div>
-              ) : null}
+              {/* Gombok */}
+              <div className="mt-4 flex items-center gap-3">
+                {p.link ? (
+                    <Link
+                      href={p.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-xl px-4 py-2 font-semibold
+                                 bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                    >
+                      Megtekintés
+                    </Link>
+                ) : null}
+                {p.secondaryAction ? (
+                    <Link
+                      href={p.secondaryAction.href}
+                      className="inline-flex items-center justify-center rounded-xl px-4 py-2 font-semibold
+                                 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-sm"
+                    >
+                      {p.secondaryAction.label}
+                    </Link>
+                ) : null}
+              </div>
             </div>
           </article>
         ))}

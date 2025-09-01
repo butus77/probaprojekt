@@ -1,47 +1,45 @@
+import { books, type Book } from '@/lib/books';
+
 export type Reference = {
   id: string;
   title: string;
-  excerpt: string;
+  year?: number;
+  excerpt?: string;
+  image?: string;
   link?: string;
   tech?: string[];
-  year?: number;
-  image?: string; // Path to project image, e.g., '/images/project-thumbnail.jpg'
+  tags?: string[];
+  type?: 'project' | 'book';
+  secondaryAction?: { label: string; href: string };
 };
 
-export const references: Reference[] = [
-  
-  // Ide illeszd be a valós portfólió adataidat
-  // Példa 1:
-  // {
-  //   id: 'my-awesome-project',
-  //   title: 'Szuper Webalkalmazás',
-  //   excerpt: 'Egy komplex webalkalmazás, amely segít a felhasználóknak a feladataik kezelésében.',
-  //   link: 'https://www.example.com/my-awesome-project',
-  //   tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js'],
-  //   year: 2025,
-  //   image: '/photos/project-awesome.jpg',
-  // },
-  //
-  // Példa 2:
-  // {
-  //   id: 'another-cool-site',
-  //   title: 'Modern Weboldal',
-  //   excerpt: 'Egy letisztult és modern bemutatkozó weboldal egy kreatív ügynökség számára.',
-  //   link: 'https://www.example.com/another-cool-site',
-  //   tech: ['HTML5', 'CSS3', 'JavaScript'],
-  //   year: 2025,
-  //   image: '/photos/project-another.jpg',
-  // },
-{
-  id: "vr-vilag-szeged",
-  title: "VR Világ Szeged Weboldal",
-  excerpt:"Frontend fejlesztőként közreműködtem a VR Világ Szeged weboldal látványrétegének felépítésében. A reszponzív dizájn, a felhasználói felület komponensei és a modern megjelenés kialakítása volt a fő fókuszom.",
-  link: "https://www.vrvilagszeged.hu", // ha publikus, maradhat
-  tech: ["Next.js", "TailwindCSS", "React"],
-  year: 2025,
-  image: "/Screenshot from VRvilag.png", // ide tehetsz egy screenshotot a public/photos mappába
-},
-
-
-
+// --- Static list of projects ---
+const projectReferences: Reference[] = [
+  {
+    id: "vr-vilag-szeged",
+    title: "VR Világ Szeged Weboldal",
+    type: 'project',
+    excerpt: "Frontend fejlesztőként közreműködtem a VR Világ Szeged weboldal látványrétegének felépítésében. A reszponzív dizájn, a felhasználói felület komponensei és a modern megjelenés kialakítása volt a fő fókuszom.",
+    link: "https://www.vrvilagszeged.hu",
+    tech: ["Next.js", "TailwindCSS", "React"],
+    year: 2025,
+    image: "/Screenshot from VRvilag.png",
+  },
 ];
+
+// --- Curated list of books to show in portfolio ---
+const curatedBookIds: string[] = ['elsoaldozasra'];
+
+const bookReferences: Reference[] = books
+  .filter(book => curatedBookIds.includes(book.id))
+  .map(book => ({
+    ...book,
+    id: book.id,
+    image: book.cover,
+    type: 'book',
+    tags: book.tags || ['ebook'],
+    secondaryAction: { label: 'Teljes könyvtár', href: '/konyvtar' },
+  }));
+
+// --- Combined list for export ---
+export const references: Reference[] = [...projectReferences, ...bookReferences];

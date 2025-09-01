@@ -31,85 +31,82 @@ type Props = {
   variant?: "solid" | "ghost";
 };
 
-function isHttpUrl(v: string) {
-  return /^https?:\/\//i.test(v);
-}
-function isEmailLike(v: string) {
-  // nagyon laza ellenőrzés: van benne @ és nincs whitespace
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-}
-function isTelLike(v: string) {
-  // enged számokat, +, zárójelek, szóköz, kötőjel
-  return /^[\d+\s().-]+$/.test(v);
-}
-
 export default function SocialLinks({ size = 20, className = "", variant = "ghost" }: Props) {
-  const base =
+  const baseClasses =
     "inline-flex items-center justify-center rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950";
-  const variantClasses =
-    variant === "solid"
-      ? "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 p-2"
-      : "text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 p-1";
+  
+  const variantClasses = {
+    solid:
+      "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 p-2",
+    ghost:
+      "text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 p-1",
+  };
 
-  // Normalizálás + szűrés kulcsonként
-  const normalized = (Object.entries(social) as [keyof typeof social, unknown][])
-    .map(([key, raw]) => {
-      if (typeof raw !== "string") return null;
-      const url = raw.trim();
-      if (!url) return null;
+  const validLinks = Object.entries(social).reduce<
+    Array<{
+      key: string;
+      href: string;
+      isExternal: boolean;
+      Icon: React.ComponentType<LucideProps>;
+      label: string;
+    }>
+  >((acc, [key, value]) => {
+    const Icon = iconMap[key as keyof typeof social];
+    const trimmedValue = value?.trim();
 
-      // webes profilok
-      if (key === "facebook" || key === "instagram" || key === "linkedin" || key === "github" || key === "x" || key === "youtube") {
-        if (!isHttpUrl(url)) return null; // csak http(s)
-        return { key, href: url, http: true };
-      }
+    // Skip if value is empty, whitespace, or a placeholder
+    if (!trimmedValue || trimmedValue.includes('_PLACEHOLDER')) {
+      return acc;
+    }
 
-      // email
-      if (key === "email") {
-        if (url.startsWith("mailto:")) return { key, href: url, http: false };
-        if (isEmailLike(url)) return { key, href: `mailto:${url}`, http: false };
-        return null;
-      }
+    let href = trimmedValue;
+    let isExternal = false;
 
-      // telefon
-      if (key === "phone") {
-        if (url.startsWith("tel:")) return { key, href: url, http: false };
-        if (isTelLike(url)) return { key, href: `tel:${url.replace(/\s+/g, "")}`, http: false };
-        return null;
-      }
+    switch (key) {
+      case "email":
+        href = href.startsWith("mailto:") ? href : `mailto:${href}`;
+        break;
+      case "phone":
+        href = `tel:${href.replace(/\s/g, "")}`;
+        break;
+      default:
+        // For other links, ensure they are valid http(s) URLs
+        if (href.startsWith("http")) {
+          isExternal = true;
+        } else {
+          return acc; // Skip invalid URL formats
+        }
+    }
 
-      return null;
-    })
-    .filter(Boolean) as Array<{ key: keyof typeof social; href: string; http: boolean }>;
+    acc.push({
+      key,
+      href,
+      isExternal,
+      Icon,
+      label: `Látogasd meg a(z) ${key} oldalamat`,
+    });
+
+    return acc;
+  }, []);
 
   return (
     <nav aria-label="Közösségi linkek">
-      <ul className={`flex items-center gap-2 ${className}`}>
-        {normalized.map(({ key, href, http }) => {
-          const Icon = iconMap[key];
-          const label =
-            key === "email"
-              ? "E-mail küldése"
-              : key === "phone"
-              ? "Telefonhívás indítása"
-              : `Megnyitás: ${key}`;
-
-          return (
-            <li key={key}>
-              <a
-                href={href}
-                title={label}
-                aria-label={label}
-                {...(http ? { target: "_blank", rel: "noopener noreferrer me" } : {})}
-                className={`${base} ${variantClasses}`}
-              >
-                <Icon size={size} />
-              </a>
-            </li>
-          );
-        })}
+      <ul className={`flex items-center ${className}`}>
+        {validLinks.map(({ key, href, isExternal, Icon, label }) => (
+          <li key={key}>
+            <a
+              href={href}
+              title={label}
+              aria-label={label}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer me" : undefined}
+              className={`${baseClasses} ${variantClasses[variant]}`}
+            >
+              <Icon size={size} />
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   );
 }
-
