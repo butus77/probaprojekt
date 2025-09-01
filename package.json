@@ -10,7 +10,8 @@
     "lint": "eslint",
     "vercel-build": "./optimize-photos.sh && next build",
     "gen:books": "node scripts/generate-books.mjs data/embeds.txt",
-    "gen:books:dl": "node scripts/generate-books.mjs data/embeds.txt --download"
+    "gen:books:dl": "node scripts/generate-books.mjs data/embeds.txt --download",
+    "audit": "gemini -p 'Elemezd a Next.js 14 + Tailwind projektet: - Ne módosíts semmit, csak olvass. - Adj részletes, magyar nyelvű jelentést. - Ellenőrizd: SEO, teljesítmény, hozzáférhetőség, kód tisztaság, projektstruktúra. - Jelezd az erősségeket és a gyenge pontokat. - Adj javaslatokat a további fejlesztésre. - A kimenet legyen markdown formátumú, jól tagolt.' > audit-jelentes.md"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
