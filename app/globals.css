@@ -28,3 +28,11 @@ html:not(.dark) body { @apply bg-white text-gray-900; }
   .section { @apply container py-16; }
 }
 
+/* Fókusz láthatóságának javítása */
+a:focus-visible, 
+button:focus-visible, 
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-950;
+}

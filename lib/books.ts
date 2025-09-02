@@ -54,7 +54,7 @@ export const books: Book[] = [
   },
   {
     id: "elsoaldozasra",
-    title: "Elsőáldozásra",
+    title: "Kis felkészülés az Elsőáldozásra",
     // year: 2024,
     // excerpt: "",
     cover: "/references/elsoaldozasra.webp",

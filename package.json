@@ -14,6 +14,7 @@
     "audit": "gemini -p 'Elemezd a Next.js 14 + Tailwind projektet: - Ne módosíts semmit, csak olvass. - Adj részletes, magyar nyelvű jelentést. - Ellenőrizd: SEO, teljesítmény, hozzáférhetőség, kód tisztaság, projektstruktúra. - Jelezd az erősségeket és a gyenge pontokat. - Adj javaslatokat a további fejlesztésre. - A kimenet legyen markdown formátumú, jól tagolt.' > audit-jelentes.md"
   },
   "dependencies": {
+    "framer-motion": "^12.23.12",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.542.0",
     "next": "^14.2.32",
@@ -38,6 +39,3 @@
     "typescript": "^5"
   }
 }
-
-
-

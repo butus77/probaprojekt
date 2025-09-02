@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import NavLink from "@/components/NavLink";
 import ThemeToggle from "@/components/ThemeToggle";
+import HamburgerMenu from "./HamburgerMenu";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -37,24 +38,19 @@ export default function Header() {
           <div className="flex items-center gap-2 md:gap-3">
             <ThemeToggle />
             {/* Hamburger csak mobilon */}
-            <button
-              type="button"
-              className="inline-flex items-center justify-center rounded-lg p-2 md:hidden border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
-              aria-label="Menü megnyitása"
-              aria-expanded={open}
-              aria-controls="mobile-nav"
-              onClick={toggle}
-            >
-              {/* egyszerű hamburger ikon */}
-              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d={open ? "M6 18L18 6M6 6l12 12" : "M3 6h18M3 12h18M3 18h18"}
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
+            {/* Mobil hamburger (csak < md) */}
+  <div className="md:hidden">
+    <HamburgerMenu
+      links={[
+        { href: "/", label: "Kezdőlap" },
+        { href: "/bejegyzesek", label: "Bejegyzések" },
+        { href: "/referenciak", label: "Referenciák" },
+        { href: "/konyvtar", label: "E-könyvtár" },
+        { href: "/fotoalbum", label: "Fotóalbum" },
+        { href: "/kapcsolat", label: "Kapcsolat" },
+      ]}
+    />
+  </div>
           </div>
 
           {/* Asztali menü */}

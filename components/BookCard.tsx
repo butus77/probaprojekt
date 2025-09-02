@@ -1,62 +1,110 @@
 "use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { Book, Tag } from 'lucide-react';
+import { useState } from "react";
+import Link from "next/link";
+import MobileNotice from "@/components/MobileNotice";
 
 type Props = {
+  id: string; // ⬅ ÚJ prop, hogy a könyvhöz anchor legyen
   title: string;
   cover: string;
   excerpt?: string;
-  link?: string;
+  link: string;
   year?: number;
   tags?: string[];
 };
 
-export default function BookCard({ title, cover, excerpt, link, year, tags }: Props) {
+export default function BookCard({ id, title, cover, excerpt, link, year, tags }: Props) {
+  const [showNotice, setShowNotice] = useState(false);
+  const [pendingLink, setPendingLink] = useState<string | null>(null);
+
+  const handleViewClick = (href: string) => {
+    const isDesktop = typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches;
+    if (isDesktop) {
+      window.open(href, "_blank", "noopener,noreferrer");
+    } else {
+      setPendingLink(href);
+      setShowNotice(true);
+    }
+  };
+
+  const handleContinue = () => {
+    if (pendingLink) {
+      window.open(pendingLink, "_blank", "noopener,noreferrer");
+    }
+    setShowNotice(false);
+    setPendingLink(null);
+  };
+
   return (
-    <article className="card flex flex-col overflow-hidden h-full p-4">
-      <div className="relative w-full aspect-[2/3] bg-gray-100 dark:bg-gray-800 rounded-lg mb-4">
-        <Image
-          src={cover}
-          alt={title}
-          fill
-          className="object-contain"
-          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+    <>
+      {showNotice && (
+        <MobileNotice
+          onContinue={handleContinue}
+          onClose={() => {
+            setShowNotice(false);
+            setPendingLink(null);
+          }}
         />
-      </div>
-      <div className="flex flex-col flex-grow">
-        <h2 className="text-lg font-bold leading-tight flex-grow">{title}</h2>
-        
-        {(year || (tags && tags.length > 0)) && (
-          <div className="mt-2 flex items-center gap-x-3 text-xs text-gray-500 dark:text-gray-400">
-            {year && (
-              <span className="flex items-center gap-1">
-                <Book size={14} /> {year}
-              </span>
-            )}
-            {tags && tags.length > 0 && (
-              <span className="flex items-center gap-1 truncate">
-                <Tag size={14} /> {tags.join(', ')}
-              </span>
-            )}
-          </div>
-        )}
+      )}
+      <article
+        id={id}
+        className="rounded-2xl border border-gray-200/70 dark:border-gray-800 bg-white/70 dark:bg-gray-900/60 shadow-card backdrop-blur overflow-hidden flex flex-col"
+      >
+        {/* Borítókép */}
+        <div className="aspect-[3/4] w-full overflow-hidden">
+          <img
+            src={cover}
+            alt={`${title} – borító`}
+            className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
 
-        {excerpt && (
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
-            {excerpt}
-          </p>
-        )}
+        {/* Tartalom */}
+        <div className="p-4 flex flex-col gap-2 flex-1">
+          <header>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+              {title}{" "}
+              {year && (
+                <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
+                  {year}
+                </span>
+              )}
+            </h2>
+          </header>
 
-        {link && (
-          <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-800">
-            <Link href={link} target="_blank" rel="noopener noreferrer" className="btn-primary w-full text-center">
+          {excerpt && (
+            <p className="text-gray-700 dark:text-gray-300 line-clamp-3">{excerpt}</p>
+          )}
+
+          {/* Tag-ek */}
+          {tags?.length ? (
+            <ul className="mt-1 flex flex-wrap gap-2">
+              {tags.map((t) => (
+                <li
+                  key={t}
+                  className="text-xs font-medium rounded-full px-2.5 py-1 bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+                >
+                  {t}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          {/* Link */}
+          <div className="mt-4">
+            <button
+              type="button"
+              onClick={() => handleViewClick(link)}
+              className="inline-flex items-center justify-center rounded-xl px-4 py-2 font-semibold
+                         bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            >
               Megtekintés
-            </Link>
+            </button>
           </div>
-        )}
-      </div>
-    </article>
+        </div>
+      </article>
+    </>
   );
 }
