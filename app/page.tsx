@@ -6,9 +6,9 @@ export default function HomePage() {
   const buttonClass = "text-center inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold transition border border-gray-300 dark:border-gray-700 hover:bg-blue-700 hover:text-white dark:hover:border-blue-700";
 
   return (
-    <section className="section">
+    <section className="section py-12 md:py-20">
       <div className="grid md:grid-cols-3 gap-12">
-        <div className="md:col-span-2">
+        <div className="md:col-span-2 text-center">
           <h1>
             Szia, Bernadetta vagyok. <br />
             <span className="text-blue-600">Weblapépítéssel foglalkozom.</span>
