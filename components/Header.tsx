@@ -17,7 +17,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gray-200/70 bg-white/70 backdrop-blur dark:border-gray-800 dark:bg-gray-950/70">
+    <header className="sticky top-0 z-40 border-b border-gray-200/70 bg-gray-50/80 text-gray-800 backdrop-blur dark:border-gray-800 dark:bg-gray-950/70 dark:text-gray-100">
       {/* Skip link */}
       <a
         href="#content"
@@ -30,7 +30,7 @@ export default function Header() {
         {/* Fő sor */}
         <div className="flex items-center justify-between py-3">
           {/* Logó / cím */}
-          <Link href="/" className="text-lg sm:text-xl font-bold" onClick={close}>
+          <Link href="/" className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100" onClick={close}> 
             Bernadetta • Webfejlesztés
           </Link>
 
