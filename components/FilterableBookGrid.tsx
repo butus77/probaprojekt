@@ -42,7 +42,7 @@ export default function FilterableBookGrid({ books }: Props) {
               title={book.title}
               cover={book.image || ''}
               excerpt={book.excerpt}
-              link={book.link}
+              link={book.link ?? undefined}
               year={book.year}
               tags={book.tags}
             />
