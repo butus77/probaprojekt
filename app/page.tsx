@@ -24,7 +24,7 @@ export default function HomePage() {
             </span>
           </h1>
 
-          <p className="mt-4 leading-relaxed text-gray-700 dark:text-gray-300">
+          <p className="mt-5 text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-300 max-w-prose mx-auto">
             Modern, letisztult és gyors weboldalakat készítek, amelyek minden
             eszközön kiválóan működnek.
           </p>

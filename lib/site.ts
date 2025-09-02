@@ -5,7 +5,7 @@ export const social = {
   github:    'https://github.com/butus77/probaprojekt',
   x:         'https://x.com/Bernade84920252',
   youtube:   '',
-  email:     'mailto:gob0504@gmail.com',
+  /*email:     'mailto:gob0504@gmail.com',*/
   phone:     '',
 };
 

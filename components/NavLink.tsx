@@ -15,7 +15,7 @@ export default function NavLink({ href, children }: Props) {
       className={[
         "px-3 py-2 rounded-lg text-sm font-medium transition",
         active
-          ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
+          ? "bg-gray-700 text-white dark:bg-white dark:text-gray-900"
           : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800",
       ].join(" ")}
       aria-current={active ? "page" : undefined}
