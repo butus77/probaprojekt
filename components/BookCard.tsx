@@ -5,7 +5,7 @@ import Link from "next/link";
 import MobileNotice from "@/components/MobileNotice";
 
 type Props = {
-  id: string; // ⬅ ÚJ prop, hogy a könyvhöz anchor legyen
+  id?: string; // ⬅ ÚJ prop, hogy a könyvhöz anchor legyen
   title: string;
   cover: string;
   excerpt?: string;
