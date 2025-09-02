@@ -67,7 +67,7 @@ export default function Header() {
         {open && (
           <nav
             id="mobile-nav"
-            className="md:hidden mt-2 mb-3 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-gray-950/90 backdrop-blur p-2 px-2 overflow-hidden"
+            className="md:hidden mt-2 mb-3 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50/95 dark:bg-gray-950/90 backdrop-blur p-2 px-2 overflow-hidden"
           >
             <ul className="flex flex-col">
               <li className="p-1">
