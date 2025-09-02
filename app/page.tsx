@@ -17,7 +17,7 @@ export default function HomePage() {
       <div className="grid md:grid-cols-3 gap-12">
         <div className="md:col-span-2 text-center">
           <h1 className="text-gray-800 dark:text-blue-400 md:py-10 text-3xl  font-bold leading-[1.2] md:leading-[1.15] sm:text-4xl md:text-5xl space-y-2 md:space-y-4">
-            <span className="block bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 
+            <span className="block bg-gradient-to-r from-blue-600 via-purple-500 to-blue-600 
              bg-clip-text text-transparent">Szia, Bernadetta vagyok.</span>
             <span className="block mt-1 md:mt-1.5  text-blue-600">
               Weblapépítéssel foglalkozom.
