@@ -4,7 +4,13 @@ export const metadata = { title: "Bemutatkozó | Bernadetta – Webfejlesztés" 
 
 export default function HomePage() {
   const buttonClass =
-    "text-center inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold transition border border-gray-300 dark:border-gray-700 hover:bg-blue-700 hover:text-white dark:hover:border-blue-700";
+  "text-center inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold transition " +
+  "border border-blue-200 bg-blue-50 text-blue-700 " +
+  "dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 " +
+  "hover:bg-blue-700 hover:text-white dark:hover:border-blue-700 " +
+  "hover:shadow-md hover:-translate-y-0.5 " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500";
+
 
   return (
     <section className="section py-12 md:py-20">
@@ -38,19 +44,19 @@ export default function HomePage() {
           </div>
         </div>
 
-        <aside className="card p-6">
-          <h2 className="text-gray-900 dark:text-blue-400">Filozófiám</h2>
+        <aside className="card p-6 bg-white/90 border border-blue-100 shadow-sm">
+          <h2 className="text-blue-700 dark:text-blue-500">Filozófiám</h2>
           <ul className="mt-4 space-y-4">
             <li className="flex items-start gap-3">
               <span
                 aria-hidden
-                className="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-500"
+                className="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-500/90"
               />
               <div>
                 <h3 className="font-semibold text-gray-900 dark:text-blue-400">
                   Reszponzív tervezés
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   Mobilon és asztali számítógépen is kiváló élmény.
                 </p>
               </div>
