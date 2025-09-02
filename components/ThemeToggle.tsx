@@ -35,7 +35,7 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="rounded-xl border border-gray-300 dark:border-gray-700 px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
+      className="rounded-xl bg-gray-100 border border-blue-200 text-gray-700 px-3 py-2 text-sm hover:bg-blue-50 hover:border-blue-300 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:border-gray-500"
       aria-label="Téma váltása"
       title="Téma váltása"
     >
