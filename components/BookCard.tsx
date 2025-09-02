@@ -9,7 +9,7 @@ type Props = {
   title: string;
   cover: string;
   excerpt?: string;
-  link: string;
+  link?: string;
   year?: number;
   tags?: string[];
 };
@@ -94,14 +94,16 @@ export default function BookCard({ id, title, cover, excerpt, link, year, tags }
 
           {/* Link */}
           <div className="mt-4">
-            <button
-              type="button"
-              onClick={() => handleViewClick(link)}
-              className="inline-flex items-center justify-center rounded-xl px-4 py-2 font-semibold
-                         bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-            >
-              Megtekintés
-            </button>
+            {link ? (
+              <button
+                type="button"
+                onClick={() => handleViewClick(link)}
+                className="inline-flex items-center justify-center rounded-xl px-4 py-2 font-semibold
+                           bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+              >
+                Megtekintés
+              </button>
+            ) : null}
           </div>
         </div>
       </article>
