@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function ReferenciakPage() {
   return (
-    <section className="section">
+    <section className="section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 text-center">
         Referenciák
       </h1>
