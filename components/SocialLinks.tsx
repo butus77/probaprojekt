@@ -21,7 +21,6 @@ const iconMap: Record<keyof typeof social, React.ComponentType<LucideProps>> = {
   github: Github,
   x: Twitter,
   youtube: Youtube,
-  email: Mail,
   phone: Phone,
 };
 
