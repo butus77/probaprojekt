@@ -4,6 +4,21 @@ export async function POST(request: Request) {
   let reqBody;
   try {
     reqBody = await request.json();
+
+  // Server-side validation
+  const { name, email, message } = reqBody;
+
+  if (!name || typeof name !== 'string' || name.trim() === '') {
+    return NextResponse.json({ error: 'Name is required.' }, { status: 400 });
+  }
+
+  if (!email || typeof email !== 'string' || !/^[\S]+@[\S]+\.[\S]+$/.test(email)) {
+    return NextResponse.json({ error: 'Valid email is required.' }, { status: 400 });
+  }
+
+  if (!message || typeof message !== 'string' || message.trim() === '') {
+    return NextResponse.json({ error: 'Message is required.' }, { status: 400 });
+  }
   } catch (error) {
     return NextResponse.json({ error: 'Invalid request body. Failed to parse JSON.' }, { status: 400 });
   }

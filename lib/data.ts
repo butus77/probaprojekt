@@ -1,26 +1,4 @@
-export const posts = [
-  {
-    slug: "elso-bejegyzes",
-    title: "Első Bejegyzés",
-    excerpt: "Üdvözöllek a blogomon! Ez az első bejegyzésem, ahol a webfejlesztés iránti szenvedélyemről és a jövőbeli terveimről írok.",
-    date: "2025-08-21",
-    tags: ["webfejlesztés", "üdvözlet", "karrier"],
-  },
-  {
-    slug: "fotozas-es-en",
-    title: "Fotózás és Én",
-    excerpt: "A kódolás mellett a fotózás a másik nagy szerelmem. Ebben a posztban megosztok néhány gondolatot a természetfotózásról.",
-    date: "2025-08-22",
-    tags: ["fotózás", "hobbi", "természet"],
-  },
-  {
-    slug: "a-nextjs-ereje",
-    title: "A Next.js Ereje",
-    excerpt: "Miért választottam a Next.js-t ehhez a projekthez? Röviden bemutatom a keretrendszer előnyeit és a tapasztalataimat.",
-    date: "2025-08-23",
-    tags: ["nextjs", "react", "webfejlesztés"],
-  },
-];
+
 
 export const photos = [
   {
