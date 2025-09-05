@@ -3,8 +3,6 @@ import BookCard from '@/components/BookCard';
 import BackButton from '@/components/BackButton';
 import MobileNotice from '@/components/MobileNotice';
 
-
-
 export const metadata = {
   title: 'Könyvtár',
   description: 'Böngésszen a könyvtárunkban, ahol számos érdekes könyvet talál.',
@@ -15,7 +13,6 @@ export default function KonyvtarPage() {
     <section className="section">
       <div className='mb-6'><BackButton /></div>
       <div className="text-center max-w-3xl mx-auto">
-        <MobileNotice />
         <h1>E-könyvtár</h1>
         <p className="mt-4 text-lg">
           Itt találhatók az általam készített digitális könyvek és segédanyagok, 
