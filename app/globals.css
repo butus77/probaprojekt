@@ -2,13 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    @apply bg-gray-100 text-gray-900;
+  }
+  html.dark {
+    @apply bg-gray-950 text-gray-100;
+  }
+  body {
+    @apply bg-transparent;
+  }
+}
+
 /* --- Alap platform finomhangolás --- */
 * { @apply antialiased; }
 ::selection { @apply bg-blue-600/20; }
-
-/* --- Sötét mód testreszabása --- */
-html.dark body { @apply bg-gray-950 text-gray-100; }
-html:not(.dark) body { @apply bg-white text-gray-900; }
 
 /* --- Tipográfia és ritmus --- */
 @layer base {

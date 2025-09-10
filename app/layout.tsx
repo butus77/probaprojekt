@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { siteInfo } from "@/lib/site";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,18 @@ export default function RootLayout({
   return (
     <html lang="hu" suppressHydrationWarning>
       <body className={`flex flex-col min-h-screen overflow-x-hidden ${inter.className}`}>
+        <Script strategy="beforeInteractive" id="theme-init">
+          {`
+            if (typeof window !== 'undefined') {
+              let theme = localStorage.getItem('theme') || 'dark';
+              if (theme === 'light' || theme === 'dark') {
+                document.documentElement.classList.add(theme);
+              } else {
+                document.documentElement.classList.add('dark');
+              }
+            }
+          `}
+        </Script>
         <Header />
         <main id="content" className="flex-grow">
           {children}
