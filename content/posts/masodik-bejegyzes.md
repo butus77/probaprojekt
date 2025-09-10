@@ -14,7 +14,7 @@ Rengeteg természetfotó készült az évek során, és kifejezetten örülök, 
 ## Hogyan kapcsolódik a webfejlesztéshez?  
 
 A fotózás és a webfejlesztés közös pontja számomra az alkotás öröme.  
-Az egyik a látványt, a másik a működést teremti meg – de mindkettőben jelen van a kreativitás és az odafigyelés.  
+Mindkettőben jelen van a kreativitás és az esztétikum.  
 
 ## Mit szeretnék megmutatni?  
 
@@ -25,4 +25,5 @@ Az egyik a látványt, a másik a működést teremti meg – de mindkettőben j
 ## Zárszó  
 
 A fotózás számomra nem csak hobbi, hanem egyfajta szemlélet is: észrevenni a szépet ott is, ahol más talán elmenne mellette.  
+ 
 

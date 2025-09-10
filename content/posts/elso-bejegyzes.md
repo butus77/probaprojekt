@@ -8,7 +8,7 @@ author: "Bernadetta"
 
 ## Üdv a blogon!  
 
-Ez az első bejegyzésem. Itt fogok megosztani gondolatokat a webfejlesztésről, a dizájnról és minden másról, ami érdekel.  
+Ez az első bejegyzésem. Itt fogok megosztani gondolatokat a webfejlesztésről, a dizájnról és minden másról, ami foglalkoztat.  
 
 ## Miért vágtam bele?  
 
