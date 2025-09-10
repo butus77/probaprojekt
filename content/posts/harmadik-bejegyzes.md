@@ -6,26 +6,27 @@ excerpt: "Fiatalon a műszaki főiskola vonzott, de az élet másfelé vitt. Mos
 author: "Bernadetta"
 ---
 
-## Gyerekkori vágy  
+## Bevezető  
 
-Sokszor hallottam gyerekkoromban, hogy *„ami késik, nem múlik”*.  
-Akkor talán közhelynek tűnt, ma azonban a saját életem példája igazolja, mennyire igaz ez a mondat.  
+Hogyan igazolódott be életemben a mondás: *„ami késik, nem múlik”*.  
+Fiatalon másfelé sodort az élet, de most, érettebb fejjel, újra lehetőséget kaptam, hogy visszatérjek egy régi álmomhoz: a webfejlesztéshez.  
 
-## A kezdetek  
+## Gyerekkori vágyak és kezdetek  
 
-A gimnáziumi évek után,felvételt szereztem a szabadkai műszaki főiskolára. Érdekelt a matematika,fizika, informatiaka,technika, és mindig ott motoszkált bennem az a vágy is, hogy egyszer valami maradandót építsek.  
-Az élet azonban másfelé vitt: kerülőutak, kényszerpályák, családi és munkahelyi feladatok sora... 
+A gimnázium után felvételt nyertem a szabadkai műszaki főiskolára. Mindig is érdekelt a matematika, a fizika, az informatika és a technika, és ott volt bennem a vágy, hogy valami maradandót hozzak létre.  
+Az élet azonban nem mindig úgy alakul, ahogyan tervezzük. Munkahelyi és családi feladatok, kényszerpályák és kerülőutak távolabb vittek az eredeti terveimtől.  
 
 ## Újrakezdés érettebb fejjel  
 
-Most, évekkel később, lehetőséget kaptam arra, hogy visszatérjek ahhoz, ami már fiatalon közelt áll hozzám: a webfejlesztéshez és a digitális építkezéshez.  
-Bár idősebb vagyok, a lelkesedésem talán még nagyobb. Tudatosabban tanulok, és értékelem az apró sikereket is.  
+Évekkel később azonban újra visszatérhettem ahhoz, ami mindig közel állt hozzám: a digitális építkezéshez. A webfejlesztésben ismét megtaláltam azt az örömöt, amit régen kerestem.  
+Bár idősebb vagyok, a lelkesedésem talán még nagyobb. Tudatosabban tanulok, és sokkal jobban értékelem az apró sikereket is, amelyek napról napra közelebb visznek a céljaimhoz.  
 
-## Zárszó  
+## Összegzés  
 
-Ez a weboldal számomra bizonyíték arra, hogy a kitérők nem végérvényes akadályok.  
-Minden tapasztalat hozzáadott valami felhasználhatót ahhoz, ahol most tartok.  
-És ami késik, az valóban nem múlik.  
+Ez a weboldal számomra annak a bizonyítéka, hogy a kitérők nem végérvényes akadályok.  
+Minden tapasztalat hozzáadott valami értékeset ahhoz, ahol most tartok.  
+És ma már tudom: ami késik, valóban nem múlik.  
+
 
 
                          

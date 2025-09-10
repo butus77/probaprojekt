@@ -18,9 +18,9 @@ Mindkettőben jelen van a kreativitás és az esztétikum.
 
 ## Mit szeretnék megmutatni?  
 
-- Természetfotók a környezetemből  
-- Inspiráló hangulatok  
-- Személyes pillanatok, amelyek számomra fontosak  
+A fotóimon elsősorban a közvetlen környezetem természeti szépségei jelennek meg.  
+Fontos számomra, hogy ezekben a képekben visszaköszönjenek inspiráló hangulatok, és olyan személyes pillanatok is, amelyek nekem sokat jelentenek.  
+
 
 ## Zárszó  
 
