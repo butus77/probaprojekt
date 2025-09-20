@@ -1,23 +1,23 @@
-// app/fotoalbum/page.tsx
-import LightboxGallery from "@/components/LightboxGallery";
-import { readPhotos } from "@/lib/photos";
+import LightboxGallery, { type Photo } from "@/components/LightboxGallery";
+import data from "@/src/data/photos.json";
 
-export const metadata = { title: "Fotóalbum | Bernadetta – Webfejlesztés" };
-export const runtime = "nodejs"; // fontos: fs-hez Node runtime kell
-// export const dynamic = "force-static"; // ha build-kor fixálni akarod
 
-export default async function GalleryPage() {
-  const photos = await readPhotos(); // public/photos → automatikus beolvasás
+// Development: always use fresh JSON
+export const revalidate = 0;
+
+export const metadata = {
+  title: "Fotóalbum",
+  description: "Képgaléria",
+};
+
+export default function FotoalbumPage() {
+  const photos = data as Photo[];
   return (
     <section className="section">
-      <h1 className="text-2xl font-semibold">Fotóalbum</h1>
-      <p className="mt-2 text-sm opacity-80">
-        Pár hangulatkép – design, munka, inspiráció.
-      </p>
-      <div className="mt-6">
-        <LightboxGallery photos={photos as any} />
-      </div>
+      <h1 className="text-3xl md:text-4xl font-extrabold">Fotóalbum</h1>
+      <LightboxGallery photos={photos} thumbHeightClass="h-56" />
+      {/* debug aid – remove later */}
+      {/* <pre className="text-xs mt-4">{JSON.stringify(photos.slice(0,3), null, 2)}</pre> */}
     </section>
   );
 }
-  

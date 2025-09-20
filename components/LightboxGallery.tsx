@@ -3,29 +3,32 @@
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 
-// Updated Photo type to include optional width and height for better image optimization
+// Képtípus – opcionális captionnel
 export type Photo = {
   id: string;
   alt: string;
   thumbSrc: string;
   fullSrc: string;
-  width?: number;
-  height?: number;
+  caption?: string;
 };
 
 type Props = {
   photos: Photo[];
+  // jelenleg nem kötelező; ha később magasság-alapú thumbot akarsz, beköthető
+  thumbHeightClass?: string;
 };
 
-export default function LightboxGallery({ photos }: Props) {
+export default function LightboxGallery({
+  photos,
+  thumbHeightClass = "h-56",
+}: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Effect for keyboard navigation (arrows, escape) and focus trapping
+  // Billentyűkezelés (ESC, ←, →) + fókusz-csapda a modálban
   useEffect(() => {
     const modalElement = modalRef.current;
 
-    // Global keydown handler for navigation
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
       if (openIndex === null) return;
       if (e.key === "Escape") setOpenIndex(null);
@@ -39,52 +42,48 @@ export default function LightboxGallery({ photos }: Props) {
 
     window.addEventListener("keydown", handleGlobalKeyDown);
 
-    // --- Focus Trap Logic ---
     if (openIndex !== null && modalElement) {
-      const focusableElements = modalElement.querySelectorAll<HTMLElement>(
+      const focusable = modalElement.querySelectorAll<HTMLElement>(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
 
-      firstElement?.focus();
+      first?.focus();
 
       const handleModalKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Tab") {
-          e.preventDefault();
-          if (e.shiftKey) {
-            // Shift + Tab
-            if (document.activeElement === firstElement) {
-              lastElement.focus();
-            } else {
-              const currentIndex = Array.from(focusableElements).indexOf(
-                document.activeElement as HTMLElement
-              );
-              focusableElements[currentIndex - 1]?.focus();
-            }
+        if (e.key !== "Tab") return;
+        e.preventDefault();
+        if (e.shiftKey) {
+          // Shift+Tab
+          if (document.activeElement === first) {
+            last?.focus();
           } else {
-            // Tab
-            if (document.activeElement === lastElement) {
-              firstElement.focus();
-            } else {
-              const currentIndex = Array.from(focusableElements).indexOf(
-                document.activeElement as HTMLElement
-              );
-              focusableElements[currentIndex + 1]?.focus();
-            }
+            const idx = Array.from(focusable).indexOf(
+              document.activeElement as HTMLElement
+            );
+            focusable[Math.max(0, idx - 1)]?.focus();
+          }
+        } else {
+          // Tab
+          if (document.activeElement === last) {
+            first?.focus();
+          } else {
+            const idx = Array.from(focusable).indexOf(
+              document.activeElement as HTMLElement
+            );
+            focusable[Math.min(focusable.length - 1, idx + 1)]?.focus();
           }
         }
       };
-      modalElement.addEventListener("keydown", handleModalKeyDown);
 
-      // Cleanup modal-specific listener
+      modalElement.addEventListener("keydown", handleModalKeyDown);
       return () => {
         window.removeEventListener("keydown", handleGlobalKeyDown);
         modalElement.removeEventListener("keydown", handleModalKeyDown);
       };
     }
 
-    // Cleanup global listener
     return () => {
       window.removeEventListener("keydown", handleGlobalKeyDown);
     };
@@ -112,7 +111,7 @@ export default function LightboxGallery({ photos }: Props) {
 
   return (
     <>
-      {/* Grid using responsive aspect ratio containers and next/image */}
+      {/* Rács – 4:3 arányú thumb konténer, hover-zoom, felirat a kép alatt */}
       <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {photos.map((ph, idx) => (
           <figure
@@ -124,6 +123,7 @@ export default function LightboxGallery({ photos }: Props) {
               onClick={() => setOpenIndex(idx)}
               className="group block w-full"
               aria-label={`Nagyítás: ${ph.alt}`}
+              title={`Nagyítás: ${ph.alt}`}
             >
               <div className="relative aspect-[4/3] w-full">
                 <Image
@@ -135,8 +135,13 @@ export default function LightboxGallery({ photos }: Props) {
                 />
               </div>
             </button>
-            <figcaption className="p-3 text-sm text-gray-600 dark:text-gray-400">
-              {ph.alt}
+
+            {/* FELIRAT – caption, ha nincs: alt */}
+            <figcaption
+              className="p-3 text-sm text-gray-600 dark:text-gray-400 line-clamp-2"
+              title={ph.caption ?? ph.alt}
+            >
+              {ph.caption ?? ph.alt}
             </figcaption>
           </figure>
         ))}
@@ -155,7 +160,7 @@ export default function LightboxGallery({ photos }: Props) {
           }}
         >
           <div className="relative max-w-5xl w-full">
-            {/* Close Button */}
+            {/* Bezárás gomb */}
             <button
               onClick={close}
               className="absolute -top-10 -right-2 md:-right-8 rounded-full bg-white/80 text-gray-900 p-2 leading-none shadow-lg hover:bg-white focus:outline-none focus:ring-2 focus:ring-white"
@@ -177,7 +182,7 @@ export default function LightboxGallery({ photos }: Props) {
               </svg>
             </button>
 
-            {/* Image */}
+            {/* Nagy kép */}
             <div className="relative mx-auto w-[min(92vw,1100px)] h-[min(80vh,1100px)]">
               <Image
                 src={currentPhoto.fullSrc}
@@ -189,7 +194,7 @@ export default function LightboxGallery({ photos }: Props) {
               />
             </div>
 
-            {/* Navigation Buttons */}
+            {/* Navigáció gombok */}
             {photos.length > 1 && (
               <>
                 <button
@@ -235,31 +240,19 @@ export default function LightboxGallery({ photos }: Props) {
               </>
             )}
 
-            {/* Caption */}
+            {/* FELIRAT – caption, ha nincs: alt */}
             <p className="mt-4 text-center text-sm text-white/80">
-              {currentPhoto.alt}
+              {currentPhoto.caption ?? currentPhoto.alt}
             </p>
           </div>
 
-          {/* Preload prev/next images, hidden from view */}
+          {/* Elő-/következő kép előtöltése (rejtve) */}
           <div style={{ display: "none" }}>
             {prevPhoto && (
-              <Image
-                src={prevPhoto.fullSrc}
-                alt=""
-                width={1600}
-                height={1067}
-                priority
-              />
+              <Image src={prevPhoto.fullSrc} alt="" width={1600} height={1067} priority />
             )}
             {nextPhoto && (
-              <Image
-                src={nextPhoto.fullSrc}
-                alt=""
-                width={1600}
-                height={1067}
-                priority
-              />
+              <Image src={nextPhoto.fullSrc} alt="" width={1600} height={1067} priority />
             )}
           </div>
         </div>
@@ -267,3 +260,4 @@ export default function LightboxGallery({ photos }: Props) {
     </>
   );
 }
+
