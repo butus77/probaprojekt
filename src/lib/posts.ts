@@ -20,7 +20,7 @@ export type Post = {
   html: string;
 };
 
-const postsDirectory = path.join(process.cwd(), 'content/posts');
+const postsDirectory = path.join(process.cwd(), 'src/content/posts');
 
 /**
  * Returns a list of all post slugs (file names without .md).
