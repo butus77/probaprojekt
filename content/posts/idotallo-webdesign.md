@@ -17,9 +17,8 @@ Az **aranymetszés** – az ókori görögök által is ismert, majd Leonardo da
 Az aranymetszés egy **természetes arány**, amelyet a természetben, a művészetben és az építészetben is megtalálunk.  
 Lényege, hogy a nagyobbik rész úgy aránylik az egészhez, ahogy a kisebbik rész aránylik a nagyobbikhoz:
 
-\[
-\frac{a}{b} = \frac{a + b}{a} \approx 1{,}618
-\]
+a / b = (a + b) / a ≈ 1,618
+
 
 Ezt az állandót **φ (phi)** jelöli.  
 Ezért szoktuk a „61,8% / 38,2%” megosztásként is emlegetni.
