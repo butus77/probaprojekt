@@ -1,5 +1,5 @@
 import LightboxGallery, { type Photo } from "@/components/LightboxGallery";
-import data from "@/src/data/photos.json";
+import data from "@/data/photos.json";
 
 
 // Development: always use fresh JSON

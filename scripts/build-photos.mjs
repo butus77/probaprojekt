@@ -5,7 +5,7 @@ import fg from "fast-glob";
 import slugify from "slugify";
 
 const ROOT = process.cwd();
-const SRC_DIR = path.join(ROOT, "photos-src");
+const SRC_DIR = path.join(ROOT, "src", "content", "photos");
 const OUT_FULL = path.join(ROOT, "public", "photos", "full");
 const OUT_THUMBS = path.join(ROOT, "public", "photos", "thumbs");
 const DATA_JSON = path.join(ROOT, "src", "data", "photos.json");
