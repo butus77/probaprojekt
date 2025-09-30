@@ -10,6 +10,37 @@ export default function Footer() {
           <SocialLinks className="gap-2" variant="solid" />
         </div>
       </div>
+   <div className="w-full max-w-md">
+  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+    <a
+      href="/cv/oneletrajz_bernadetta_hu.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border px-3 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900"
+    >
+      <span role="img" aria-label="Hungarian flag">🇭🇺</span> Önéletrajz
+    </a>
+    <a
+      href="/cv/lebenslauf_bernadetta_de.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border px-3 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900"
+    >
+      <span role="img" aria-label="German flag">🇩🇪</span> Lebenslauf
+    </a>
+    <a
+      href="/cv/cv_bernadetta_en.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border px-3 text-sm hover:bg-neutral-50 dark:hover:bg-neutral-900"
+    >
+      <span role="img" aria-label="UK flag">🇬🇧</span> CV
+    </a>
+  </div>
+</div>
+
+
+
     </footer>
   );
 }
